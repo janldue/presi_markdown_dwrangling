@@ -1,0 +1,48 @@
+---
+title: "New ways in R"
+author: "Jan Lemm"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  ioslides_presentation:
+    css: presi_styles.css
+subtitle: Markdown and Data Wrangling
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+<!-- <script> -->
+<!--    $(document).ready(function() { -->
+<!--      $head = $('#header'); -->
+<!--      $head.prepend('<img src="\aoe.png\" style=\"width: 150px;padding-top: 20px;\"/>') -->
+<!--    }); -->
+<!-- </script> -->
+
+## Content
+
+- Why should you use R Markdown
+- Live presentation
+- Conclusion R Markdown
+- Why should you do all your data wrangling with R
+- Introducing dplyr and tidyr packages
+- Live presentation
+- Conclusion Data Wrangling
+
+## Why shoud I use R Markdown
+
+***
+A slide without a title
+
+## Slide with R Output
+
+```{r cars, echo=TRUE, message=FALSE, warning=FALSE}
+summary(cars)
+```
+
+## Slide with Plot
+
+```{r pressure}
+plot(pressure)
+```
+
