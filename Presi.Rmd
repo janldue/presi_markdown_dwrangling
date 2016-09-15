@@ -1,0 +1,68 @@
+---
+title: "New developments in R"
+author: "Jan Lemm"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  ioslides_presentation:
+    css: presi_styles.css
+    logo: figures/MARS_logo.jpg
+    transition: 0.8
+subtitle: Markdown and Data Wrangling
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, comment="")
+library(EDAWR)
+library(DT)
+library(tidyr)
+library(dplyr)
+```
+
+<!-- link to the presentation -->
+<!-- https://janldue.github.io/presi_markdown_dwrangling/Presi_Markdown_wrangling.html -->
+
+
+## Aims of this talk
+
+- introducing R Markdown
+- getting to know dplyr and tidyr
+
+## What is R Markdown
+
+- authoring framework for data science
+- code scripting and execution (**knitr**)
+- report generation (**markdown**)
+- multiple formats (html, pdf, docx via **pandoc**)
+- [see Examples here](http://rmarkdown.rstudio.com/gallery.html)
+
+<img src="figures/logos_all.png" height="200px" width="600px" > </img>
+
+## introducing TIDYR and dplyr
+### R works best with "tidy data"!
+
+1. Each variable is saved in its own column.
+2. Each observation is saved in its own row.
+3. Each "type" of observation is stored in a single table (here, storms)
+
+## introducing TIDYR and dplyr {.smaller}
+### R works best with "tidy data"!
+
+1. Each variable is saved in its own column.
+2. Each observation is saved in its own row.
+3. Each "type" of observation is stored in a single table (here, storms)
+
+```{r, echo=FALSE, fig.height=1, fig.width=2, message=FALSE, warning=FALSE}
+datatable(storms,
+          options=list(paging = FALSE,
+                       searching=FALSE))
+
+```
+
+## introducing tidyr and DPLYR 
+### interesting dplyr functions
+
+## introducing tidyr and dplyr
+### the pipe operator %>% 
+
+
+
