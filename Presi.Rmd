@@ -6,7 +6,6 @@ output:
   ioslides_presentation:
     css: presi_styles.css
     logo: figures/MARS_logo.jpg
-    transition: 0.8
 subtitle: Markdown and Data Wrangling
 ---
 
@@ -19,13 +18,21 @@ library(dplyr)
 ```
 
 <!-- link to the presentation -->
-<!-- https://janldue.github.io/presi_markdown_dwrangling/Presi_Markdown_wrangling.html -->
+<!-- https://janldue.github.io/presi_markdown_dwrangling/Presi.html -->
 
 
 ## Aims of this talk
 
 - introducing R Markdown
 - getting to know dplyr and tidyr
+
+## Aims of this talk
+
+- introducing R Markdown
+- getting to know dplyr and tidyr
+
+<img src="figures/giphy.gif" height="300" width="300" > </img>
+
 
 ## What is R Markdown
 
@@ -44,7 +51,7 @@ library(dplyr)
 2. Each observation is saved in its own row.
 3. Each "type" of observation is stored in a single table (here, storms)
 
-## introducing TIDYR and dplyr {.smaller}
+## introducing tidyr and dplyr {.smaller}
 ### R works best with "tidy data"!
 
 1. Each variable is saved in its own column.
@@ -58,11 +65,42 @@ datatable(storms,
 
 ```
 
-## introducing tidyr and DPLYR 
-### interesting dplyr functions
+## introducing tidyr and dplyr 
+### interesting functions
 
-## introducing tidyr and dplyr
+* gather and spread
+* separate and unite
+* select
+* filter
+* mutate
+* summarise
+* arrange
+* join
+
+
+## introducing tidyr and dplyr 
 ### the pipe operator %>% 
+
+## introducing tidyr and dplyr {.smaller}
+### the pipe operator %>% - lets play
+
+```{r echo = TRUE, echo=TRUE, message=FALSE, warning=FALSE, cache=TRUE}
+storms_pipe <- storms %>% 
+  mutate(ratio = round(pressure / wind)) %>% 
+  arrange(desc(ratio)) #%>% 
+  # summarise(mean = mean(pressure), sum = sum(pressure), n = n())
+  # select(wind, ratio) %>% 
+  # filter(wind >= 50)
+
+
+```
+
+<div class="newspaper" >
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+tbl_df(storms)
+tbl_df(storms_pipe)
+```
+</div>
 
 
 
