@@ -356,3 +356,15 @@
   height: 170px !important;
 }
 
+.newspaper {
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
+    -webkit-column-gap: 1px; /* Chrome, Safari, Opera */
+    -moz-column-gap: 1px; /* Firefox */
+    column-gap: 1px;
+}
+
+slides > slide:not(.nobackground):after {
+  content: ""
+}
