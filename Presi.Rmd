@@ -7,6 +7,7 @@ output:
     css: presi_styles.css
     logo: figures/MARS_logo.jpg
 subtitle: Markdown and Data Wrangling
+
 ---
 
 ```{r setup, include=FALSE}
@@ -18,7 +19,7 @@ library(dplyr)
 ```
 
 <!-- link to the presentation -->
-<!-- https://janldue.github.io/presi_markdown_dwrangling/Presi.html -->
+<!-- https://janldue.github.io/presi_markdown_dwrangling/Presi_1.html -->
 
 
 ## Aims of this talk
@@ -31,7 +32,7 @@ library(dplyr)
 - introducing R Markdown
 - getting to know dplyr and tidyr
 
-<img src="figures/giphy.gif" height="300" width="300" > </img>
+<img src="figures/giphy.gif" height=30% width=30% > </img>
 
 
 ## What is R Markdown
@@ -44,19 +45,19 @@ library(dplyr)
 
 <img src="figures/logos_all.png" height="200px" width="600px" > </img>
 
-## introducing TIDYR and dplyr
-### R works best with "tidy data"!
+## introducing tidyr and dplyr
+### R works best with "tidy data"
 
 1. Each variable is saved in its own column.
 2. Each observation is saved in its own row.
-3. Each "type" of observation is stored in a single table (here, storms)
+3. Each "type" of observation is stored in a single table
 
 ## introducing tidyr and dplyr {.smaller}
-### R works best with "tidy data"!
+### R works best with "tidy data"
 
 1. Each variable is saved in its own column.
 2. Each observation is saved in its own row.
-3. Each "type" of observation is stored in a single table (here, storms)
+3. Each "type" of observation is stored in a single table
 
 ```{r, echo=FALSE, fig.height=1, fig.width=2, message=FALSE, warning=FALSE}
 datatable(storms,
@@ -71,6 +72,7 @@ datatable(storms,
 * gather and spread
 * separate and unite
 * select
+* group_by
 * filter
 * mutate
 * summarise
@@ -78,29 +80,62 @@ datatable(storms,
 * join
 
 
-## introducing tidyr and dplyr 
-### the pipe operator %>% 
+## introducing tidyr and dplyr {.smaller}
+### the pipe operator %>% - lets play (1)
+
+```{r spread, echo=TRUE, message=FALSE, warning=FALSE, cache=TRUE}
+
+storm_pipe1 <- storms %>% 
+  select(storm,wind) %>% 
+  spread(storm, wind)
+tbl_df(storm_pipe1)
+
+```
 
 ## introducing tidyr and dplyr {.smaller}
-### the pipe operator %>% - lets play
+### the pipe operator %>% - lets play (2)
 
-```{r echo = TRUE, echo=TRUE, message=FALSE, warning=FALSE, cache=TRUE}
-storms_pipe <- storms %>% 
+```{r gather, echo=TRUE, message=FALSE, warning=FALSE}
+storm_pipe2 <- storm_pipe1 %>% 
+  gather("storm","wind",1:ncol(storm_pipe1))
+tbl_df(storm_pipe2)
+```
+
+## introducing tidyr and dplyr {.smaller}
+### the pipe operator %>% - lets play (3)
+
+```{r seperate, echo=TRUE, message=FALSE, warning=FALSE}
+storm_pipe3 <- storms %>% 
+  separate(date, c("year", "month", "day"), sep="-")
+tbl_df(storm_pipe3)
+```
+
+You can do the opposite with unite().
+
+## introducing tidyr and dplyr {.smaller}
+### the pipe operator %>% - lets play (4)
+
+```{r mutate arrange, echo = TRUE, message=FALSE, warning=FALSE, cache=TRUE}
+storms_pipe3 <- storms %>% 
   mutate(ratio = round(pressure / wind)) %>% 
-  arrange(desc(ratio)) #%>% 
-  # summarise(mean = mean(pressure), sum = sum(pressure), n = n())
-  # select(wind, ratio) %>% 
-  # filter(wind >= 50)
-
-
+  arrange(desc(ratio)) 
+tbl_df(storms_pipe3)
 ```
 
-<div class="newspaper" >
-```{r, echo=TRUE, message=FALSE, warning=FALSE}
-tbl_df(storms)
-tbl_df(storms_pipe)
+## introducing tidyr and dplyr {.smaller}
+### the pipe operator %>% - lets play (5)
+
+```{r filter select summarise, echo=TRUE, message=FALSE, warning=FALSE, cache=TRUE}
+storms_pipe4 <- storms %>% 
+  filter(wind >= 50) %>% 
+  select(wind, pressure) %>%
+  summarise(mean = mean(wind),sum = sum(wind),n = n())
+tbl_df(storms_pipe4)
 ```
-</div>
 
+## further Information
 
-
+* [cheat sheet on data wrangling](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+* [webinar on Data wrangling with R and RStudio](https://www.rstudio.com/resources/webinars/data-wrangling-with-r-and-rstudio/)
+* [cheat sheet on R Markdown](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+* [Homepage R Markdown](http://rmarkdown.rstudio.com/)
